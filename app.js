@@ -1,10 +1,14 @@
-//import express
+//imports
 const express = require('express');
+const cors = require('cors');
+
 //create app
 const app = express();
+
 //import routes
 const userRoute = require('./route/userRoute');
 const loginRoute = require('./route/loginRoute');
+
 //DB connection
 const mongoose = require('mongoose');
 
@@ -14,6 +18,10 @@ mongoose.connect('mongodb://localhost:27017/tictac')
 
 //Security
 require('dotenv').config();
+
+//Use CORS
+app.use(cors());
+app.options('*', cors());  // enable pre-flight
 
 // Middleware to parse JSON
 app.use(express.json());
