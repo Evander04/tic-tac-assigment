@@ -5,10 +5,6 @@ const cors = require('cors');
 //create app
 const app = express();
 
-//import routes
-const userRoute = require('./route/userRoute');
-const loginRoute = require('./route/loginRoute');
-
 //DB connection
 const mongoose = require('mongoose');
 
@@ -26,9 +22,16 @@ app.options('*', cors());  // enable pre-flight
 // Middleware to parse JSON
 app.use(express.json());
 
+//import routes
+const userRoute = require('./route/userRoute');
+const loginRoute = require('./route/loginRoute');
+const gameRoute = require('./route/gameRoute');
+
 // Route handling
-app.use('/api/users', userRoute);
 app.use('/api', loginRoute);
+app.use('/api/users', userRoute);
+app.use('/api/game', gameRoute);
+
 
 
 app.use((req, res, next) => {
