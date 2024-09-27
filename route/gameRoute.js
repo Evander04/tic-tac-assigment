@@ -5,5 +5,6 @@ const protect = require('../middleware/authMiddleware');
 
 // Define user routes
 router.get('/init',protect, boardController.initGame);
+router.post('/makeMove',protect, boardController.move);
 
 module.exports = router;
